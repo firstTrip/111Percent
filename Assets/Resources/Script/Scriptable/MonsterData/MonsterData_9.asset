@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08ad840a1b286014c89132394bd68a53, type: 3}
   m_Name: MonsterData_9
   m_EditorClassIdentifier: 
-  MonsterName: Monster_2
+  MonsterName: Monster_1
   MonsterSpeed: 3
   MonsterAttack: 3
+  MonsterHP: 1700

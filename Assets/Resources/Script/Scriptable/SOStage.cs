@@ -6,5 +6,4 @@ public class SOStage : ScriptableObject
 {
     public int time;
     public int MonsterCnt;
-    public int MonsterHP;
 }

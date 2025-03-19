@@ -7,4 +7,6 @@ public class SOMonster : ScriptableObject
     public string MonsterName;
     public float MonsterSpeed;
     public float MonsterAttack;
+    public float MonsterHP;
+
 }

@@ -24,6 +24,12 @@ public class GameManager : Singleton<GameManager>
     SOMonster nowMonster;
 
     [Space]
+    [Header("Spawn")]
+    [SerializeField]
+    Spawn[] spawns;
+
+
+    [Space]
     [Header("ETC Data")]
 
     [SerializeField]
@@ -49,12 +55,16 @@ public class GameManager : Singleton<GameManager>
 
     IEnumerator CO_Timer()
     {
-        while((WaveLevel-1) < stageDatas.Length)
+        yield return new WaitForSeconds(1f);
+
+
+        while ((WaveLevel-1) < stageDatas.Length)
         {
             nowStage = stageDatas[WaveLevel - 1];
             nowMonster = MonsterDatas[WaveLevel - 1];
 
             float _time = nowStage.time;
+            StartCoroutine(CO_MonsterSpawn());
             while(_time>0)
             {
                 UIManager.Instance.GetMagicPanel().GetTimer().text = string.Format("{0:D2}:{1:D2}", (_time / 60).ToString("00"), _time.ToString("00"));
@@ -65,6 +75,26 @@ public class GameManager : Singleton<GameManager>
 
             IncreaseWaveLevel();
             UIManager.Instance.GetMagicPanel().GetTimerTitle().text = "¿þÀÌºê " + WaveLevel.ToString();
+
+        }
+    }
+
+    IEnumerator CO_MonsterSpawn()
+    {
+
+        int MonsterCnt = 0;
+        while(MonsterCnt < nowStage.MonsterCnt)
+        {
+
+            for(int i=0;i<spawns.Length;++i)
+            {
+                if (spawns[i] !=null)
+                {
+                    spawns[i].CreateMonster(nowMonster);
+                }
+            }
+            MonsterCnt++;
+            yield return new WaitForSeconds(1f);
 
         }
     }

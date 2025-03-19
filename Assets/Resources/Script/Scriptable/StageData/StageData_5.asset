@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 660ad4b0d754ab745ae28c90f53a50e5, type: 3}
   m_Name: StageData_5
   m_EditorClassIdentifier: 
-  time: 19
+  time: 20
   MonsterCnt: 20
   MonsterHP: 900

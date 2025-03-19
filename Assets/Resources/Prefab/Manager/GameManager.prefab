@@ -44,3 +44,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a980380cd2eb0f4d94f058101875602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stageDatas:
+  - {fileID: 11400000, guid: eae919fee5f03d64a93435752fa6b5d5, type: 2}
+  - {fileID: 11400000, guid: 52e563f1bcb666f499e2f76ab61def5b, type: 2}
+  - {fileID: 11400000, guid: 4c22fa08dba84604b9c3632ef9b1b5bd, type: 2}
+  - {fileID: 11400000, guid: 9bccd0145297d9c48a62e8565ad5d90a, type: 2}
+  - {fileID: 11400000, guid: 1cca8351423a9ad45aa4aa618b1a645b, type: 2}
+  - {fileID: 11400000, guid: b21e1b0ea70a7d24aa6b0768c15bcb4d, type: 2}
+  - {fileID: 11400000, guid: f31d9edd7a116794f8a5058cbb89328f, type: 2}
+  - {fileID: 11400000, guid: c62add38579c0a04ba607c3a414cfd04, type: 2}
+  - {fileID: 11400000, guid: 0c6b3788190a0f04c97e708318daca57, type: 2}
+  - {fileID: 11400000, guid: 91b7c9826c413774f8360d7cf6a1bba1, type: 2}
+  - {fileID: 11400000, guid: fdf9b8727c2dd0c49a816826a81ddc0c, type: 2}
+  - {fileID: 11400000, guid: 91130db60e986094d9b176b6a667feee, type: 2}
+  - {fileID: 11400000, guid: be496137910ecfe46a573c187bd4765d, type: 2}
+  - {fileID: 11400000, guid: 5b6d775fe6e1dc44ea52ddb7446db6d1, type: 2}
+  - {fileID: 11400000, guid: d538a20ffd377804ba75b3e5b471223f, type: 2}
+  - {fileID: 11400000, guid: 65c9526d3517804438802fd76e8e4b27, type: 2}
+  - {fileID: 11400000, guid: 0d3578cecfa57ad47b5d5fa650590f9a, type: 2}
+  - {fileID: 11400000, guid: af6f8884df006454abefc94560bf233d, type: 2}
+  - {fileID: 11400000, guid: 7737d5cc7ad8d514298a9dd19244dd3a, type: 2}
+  - {fileID: 11400000, guid: 1bb6336fa12c29a439a607532bc1685f, type: 2}
+  nowStage: {fileID: 0}
+  MonsterDatas:
+  - {fileID: 11400000, guid: e9da6df80702d4d45992498474254021, type: 2}
+  - {fileID: 11400000, guid: 4402a8d274f94bb47a97f234dcaab46d, type: 2}
+  - {fileID: 11400000, guid: 5febcb4b9cd5b854083a871e263357c3, type: 2}
+  - {fileID: 11400000, guid: d3b2d36d34248d64699a51f0af3af9dc, type: 2}
+  - {fileID: 11400000, guid: 62fe6493545260c4daa1e4b03e355d36, type: 2}
+  - {fileID: 11400000, guid: 9d9782cbc9d62bb45aa0c516e1827293, type: 2}
+  - {fileID: 11400000, guid: 5bde856a4821a8b4d94fe98f6848d2fd, type: 2}
+  - {fileID: 11400000, guid: 0970e2f907a905b4ea7e93cdd6db7271, type: 2}
+  - {fileID: 11400000, guid: 30e311133b28fb143a63773f081c9323, type: 2}
+  - {fileID: 11400000, guid: 9ab6c566669f2834eafccb72f56b7120, type: 2}
+  - {fileID: 11400000, guid: 351d55cf117f1474c9b89c15a23f47da, type: 2}
+  - {fileID: 11400000, guid: 7ddbe84b62cdfd143bf5ed66d15681de, type: 2}
+  - {fileID: 11400000, guid: 35292fe11e46eef42a9fd954b72abc8f, type: 2}
+  - {fileID: 11400000, guid: c47984194e8f4a84790363d445402565, type: 2}
+  - {fileID: 11400000, guid: 643b8166436444242a5deea42bb78c67, type: 2}
+  - {fileID: 11400000, guid: a8998a5570c47f54f9f232e13b16de15, type: 2}
+  - {fileID: 11400000, guid: 901b2645a2c726b4f9eda3556a219b96, type: 2}
+  - {fileID: 11400000, guid: ffb5006c3e98c9147bc3fd28e2aecf7a, type: 2}
+  - {fileID: 11400000, guid: 01e9f29dfb7c7fa40b8ade9d0f94ed10, type: 2}
+  - {fileID: 11400000, guid: dad71fbcd0cbd0a43a7dc506c3e02db6, type: 2}
+  nowMonster: {fileID: 0}
+  spawns:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  SummonsCnt: 20
+  GameSpeed: 1
+  WaveLevel: 1
+  CoinCnt: 100
