@@ -29,20 +29,37 @@ public class TabUnit : MonoBehaviour
     }
 
     public ECellType eCellType;
+
+    public Vector3 pos;
+    private void Awake()
+    {
+        if(eCellType != ECellType.NONE)
+            pos = IMG_TabPanel.rectTransform.anchoredPosition;
+    }
+
     public void ActivePanel(Action action1 ,Action action2)
     {
+
+        //SetOriginPos();
         if (!IMG_TabPanel.IsActive())
         {
             action1?.Invoke();
+
             IMG_TabPanel.gameObject.SetActive(true);
-            IMG_TabPanel.transform.position += new Vector3(0, 200, 0);
+            IMG_TabPanel.rectTransform.anchoredPosition = pos + new Vector3(0, 200, 0);
+
         }
         else
         {
             IMG_TabPanel.gameObject.SetActive(false);
-            IMG_TabPanel.transform.position -= new Vector3(0, 200, 0);
+            IMG_TabPanel.rectTransform.anchoredPosition = pos - new Vector3(0, 200, 0);
             action2?.Invoke();
         }
+    }
+
+    public void SetOriginPos()
+    {
+        IMG_TabPanel.rectTransform.anchoredPosition = pos;
     }
 
     public void SetCnt(int cnt)

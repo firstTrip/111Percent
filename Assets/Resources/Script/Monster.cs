@@ -18,7 +18,12 @@ public class Monster : MonoBehaviour
     float MonsterHP;
 
     [SerializeField]
+    float OriginMonsterHP;
+    [SerializeField]
     Rigidbody2D rb;
+
+    [SerializeField]
+    GameObject hpBar;
 
 
     float coolTime = 2f;
@@ -43,6 +48,7 @@ public class Monster : MonoBehaviour
     {
         if(MonsterHP<0)
         {
+            GameManager.Instance.SetCoin(3);
             PoolingManager.ReturnObj(MonsterName, this.gameObject);
         }
     }
@@ -55,11 +61,18 @@ public class Monster : MonoBehaviour
         MonsterSpeed = monsterdata.MonsterSpeed;
         MonsterAttack = monsterdata.MonsterAttack;
         MonsterHP = monsterdata.MonsterHP;
+        OriginMonsterHP = MonsterHP;
+        hpBar.transform.localScale = new Vector3(0.92f, hpBar.transform.localScale.y, 0);
     }
 
     public void GetDamage(float dmg)
     {
         MonsterHP -= dmg;
+
+        hpBar.transform.localScale = new Vector3( (MonsterHP / OriginMonsterHP) * 0.92f, hpBar.transform.localScale.y,0);
+        var obj = PoolingManager.GetObj("DamageText");
+        obj.transform.position = this.gameObject.transform.position;
+        obj.gameObject.GetComponent<DamageText>().SetDamage(dmg);
     }
 
 }

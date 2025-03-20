@@ -33,6 +33,14 @@ public class TabManager : MonoBehaviour
     [Header("Canvas")]
     Canvas uiCanvas;
 
+    [SerializeField]
+    List<GameObject> panelList = new List<GameObject>();
+
+    [SerializeField]
+    Vector3 originPanel;
+
+    [SerializeField]
+    Vector3 upPanelTran;
 
     private void Awake()
     {
@@ -43,11 +51,14 @@ public class TabManager : MonoBehaviour
         BTN_Mine.onClick.AddListener(MineEvent);
 
         uiCanvas = UIManager.Instance.GetUICanvas();
+        originPanel = IMG_MagicPanel.transform.position;
+        upPanelTran = IMG_MagicPanel.transform.position + new Vector3(0, 200, 0);
     }
 
     void PrizeEvent()
     {
         Debug.Log("PrizeEvent");
+
         BTN_Prize.GetComponent<TabUnit>().ActivePanel(MoveMagicPanel, RevertMagicPanel);
     }
 
@@ -125,13 +136,35 @@ public class TabManager : MonoBehaviour
 
     void MoveMagicPanel()
     {
-        IMG_MagicPanel.transform.position += new Vector3(0, 200, 0);
+        AllClosePanel();
+        IMG_MagicPanel.transform.position = upPanelTran;
     }
 
 
     void RevertMagicPanel()
     {
-        IMG_MagicPanel.transform.position -= new Vector3(0, 200, 0);
+        if(!IsActivePanel())
+            IMG_MagicPanel.transform.position = originPanel;
     }
 
+    void AllClosePanel()
+    {
+        foreach(var data in panelList)
+        {
+            data.SetActive(false);
+        }
+    }
+
+    bool IsActivePanel()
+    {
+        foreach (var data in panelList)
+        {
+            if(data.activeSelf)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

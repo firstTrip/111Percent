@@ -160,6 +160,7 @@ public class GameManager : Singleton<GameManager>
     public void SetCoin(int _cnt)
     {
         CoinCnt += _cnt;
+        UIManager.Instance.GetMagicPanel().SetCoinText();
     }
 
     public int GetCoin()

@@ -9,9 +9,23 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     float HP =200f;
+    [SerializeField]
+    GameObject hpBar;
 
+    [SerializeField]
+    float OriginMonsterHP;
+
+    private void Awake()
+    {
+        OriginMonsterHP = HP;
+    }
     private void Update()
     {
+        if(HP < 100)
+        {
+
+        }
+
         if(HP<0)
         {
             //game end
@@ -28,5 +42,6 @@ public class Player : MonoBehaviour
     public void GetDamage(float _dmg)
     {
         HP -= _dmg;
+        hpBar.transform.localScale = new Vector3((HP / OriginMonsterHP) * 0.92f, hpBar.transform.localScale.y, 0);
     }
 }
