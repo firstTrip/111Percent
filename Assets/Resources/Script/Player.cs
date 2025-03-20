@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -21,14 +22,24 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
-        if(HP < 100)
+        if(HP < (HP/4))
         {
-
+            var obj = PoolingManager.GetObj("Indicator");
+            obj.transform.SetParent(UIManager.Instance.GetUICanvas().transform);
+            obj.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+            obj.GetComponent<Indicator>().SetDesc("체력이 많이 낮습니다.", 1.5f);
         }
 
         if(HP<0)
         {
             //game end
+
+            var obj = PoolingManager.GetObj("Indicator");
+            obj.transform.SetParent(UIManager.Instance.GetUICanvas().transform);
+            obj.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+            obj.GetComponent<Indicator>().SetDesc("플레이어가 죽었습니다.", 1.5f);
+
+            Time.timeScale = 0f;
         }
     }
 

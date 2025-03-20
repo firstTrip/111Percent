@@ -15,7 +15,6 @@ public class Cell : MonoBehaviour
         PET,
         UPGRADE,
         MINE
-
     }
 
     public ECellType eCellType;
@@ -43,6 +42,10 @@ public class Cell : MonoBehaviour
     [SerializeField]
     SOPet[] SOPetData;
 
+
+    [SerializeField]
+    SOMine[] SOMineData;
+
     [Space]
     [Header("Canvas")]
     Canvas uiCanvas;
@@ -55,6 +58,11 @@ public class Cell : MonoBehaviour
 
     [SerializeField]
     Text TXT_NowUpgrade;
+
+    [Space]
+    [Header("Mine Text")]
+    [SerializeField]
+    Text TXT_MineCost;
 
     //[SerializeField]
     //SOMine[] SOMineData;
@@ -114,14 +122,46 @@ public class Cell : MonoBehaviour
                 MineGroup.gameObject.SetActive (true);
                 button.onClick.AddListener(MINEEvent);
 
+                switch (step)
+                {
+                    case (int)MineType.ONE:
+
+                        TXT_MineCost.text = "1";
+                        break;
+
+                    case (int)MineType.TWO:
+                        TXT_MineCost.text = "3";
+                        break;
+
+                    case (int)MineType.THREE:
+                        TXT_MineCost.text = "7";
+                        break;
+                }
+
                 break;
         }
         uiCanvas = UIManager.Instance.GetUICanvas();
     }
 
+
+    float timer;
     void PrizeEvent()
     {
-        GameManager.Instance.GetPlayerSpawn().CreatePrize(SOPrizeData[step-1]);
+        timer = UIManager.Instance.GetTabManager().GetTimer();
+
+        if (timer >0)
+        {
+            GameManager.Instance.GetPlayerSpawn().CreatePrize(SOPrizeData[step - 1]);
+            UIManager.Instance.GetTabManager().StartTimer();
+        }
+        else
+        {
+            var obj = PoolingManager.GetObj("Indicator");
+            obj.transform.SetParent(uiCanvas.transform);
+            obj.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+            obj.GetComponent<Indicator>().SetDesc("현상범이 부족합니다.", 1.5f);
+            return;
+        }
     }
 
     void PETEvent()
@@ -227,8 +267,115 @@ public class Cell : MonoBehaviour
 
     }
 
+    enum MineType
+    {
+        NONE,
+        ONE,
+        TWO,
+        THREE,
+    }
+
     void MINEEvent()
     {
+        switch (step)
+        { 
+            case (int)MineType.ONE:
+                if (GameManager.Instance.GetSprit() < 1)
+                {
+                    var obj2 = PoolingManager.GetObj("Indicator");
+                    obj2.transform.SetParent(uiCanvas.transform);
+                    obj2.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+                    obj2.GetComponent<Indicator>().SetDesc("영혼이 부족합니다.", 1.5f);
+                    return;
+                }
+                GameManager.Instance.SetSprit(-1);
+                GameManager.Instance.IncreaseSummonsCnt();
+                var picker = new MagicRandomMangager<GradeType>();
+                var TypePicker = new MagicRandomMangager<MagicType>();
+
+                SOMine data = SOMineData[0];
+                GradeType[] grade = GameManager.Instance.summonsGrade;
+                for (int i = 0; i < grade.Length; ++i)
+                {
+                    picker.AddEntry(grade[i], data.SummonsWeghitRate[i]);
+                }
+
+                TypePicker.AddEntry(MagicType.GROUND, 33);
+                TypePicker.AddEntry(MagicType.FIRE, 33);
+                TypePicker.AddEntry(MagicType.WATER, 33);
+
+                GameManager.Instance.AddMagic(TypePicker.PickRandom(), picker.PickRandom());
+
+                UIManager.Instance.GetMagicPanel().SetMagic();
+
+                break;
+
+            case (int)MineType.TWO:
+
+                if (GameManager.Instance.GetSprit() < 3)
+                {
+                    var obj2 = PoolingManager.GetObj("Indicator");
+                    obj2.transform.SetParent(uiCanvas.transform);
+                    obj2.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+                    obj2.GetComponent<Indicator>().SetDesc("영혼이 부족합니다.", 1.5f);
+                    return;
+                }
+                GameManager.Instance.SetSprit((-1) * 3);
+                GameManager.Instance.IncreaseSummonsCnt();
+                var picker2 = new MagicRandomMangager<GradeType>();
+                var TypePicker2 = new MagicRandomMangager<MagicType>();
+
+                SOMine data2 = SOMineData[1];
+                GradeType[] grade2 = GameManager.Instance.summonsGrade;
+                for (int i = 0; i < grade2.Length; ++i)
+                {
+                    picker2.AddEntry(grade2[i], data2.SummonsWeghitRate[i]);
+                }
+
+                TypePicker2.AddEntry(MagicType.GROUND, 33);
+                TypePicker2.AddEntry(MagicType.FIRE, 33);
+                TypePicker2.AddEntry(MagicType.WATER, 33);
+
+                GameManager.Instance.AddMagic(TypePicker2.PickRandom(), picker2.PickRandom());
+
+                UIManager.Instance.GetMagicPanel().SetMagic();
+
+                break;
+
+            case (int)MineType.THREE:
+
+                if (GameManager.Instance.GetSprit() < 7)
+                {
+                    var obj2 = PoolingManager.GetObj("Indicator");
+                    obj2.transform.SetParent(uiCanvas.transform);
+                    obj2.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+                    obj2.GetComponent<Indicator>().SetDesc("영혼이 부족합니다.", 1.5f);
+                    return;
+                }
+
+                GameManager.Instance.SetSprit((-1) * 7);
+                GameManager.Instance.IncreaseSummonsCnt();
+                var picker3 = new MagicRandomMangager<GradeType>();
+                var TypePicker3 = new MagicRandomMangager<MagicType>();
+
+                SOMine data3 = SOMineData[2];
+                GradeType[] grade3 = GameManager.Instance.summonsGrade;
+                for (int i = 0; i < grade3.Length; ++i)
+                {
+                    picker3.AddEntry(grade3[i], data3.SummonsWeghitRate[i]);
+                }
+
+                TypePicker3.AddEntry(MagicType.GROUND, 33);
+                TypePicker3.AddEntry(MagicType.FIRE, 33);
+                TypePicker3.AddEntry(MagicType.WATER, 33);
+
+                GameManager.Instance.AddMagic(TypePicker3.PickRandom(), picker3.PickRandom());
+
+                UIManager.Instance.GetMagicPanel().SetMagic();
+
+
+                break;
+        }
 
     }
 }

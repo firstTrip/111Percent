@@ -16,6 +16,7 @@ public class SOMagic : ScriptableObject
     public string MagicName;
     public int MagicDamage;
     public Sprite MagicImage;
+    public Color MagicColor;
     public float MagicCoolTime;
     public float MagicSpeed;
     public float MagicRange;

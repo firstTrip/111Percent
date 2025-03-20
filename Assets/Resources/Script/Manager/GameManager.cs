@@ -88,9 +88,6 @@ public class GameManager : Singleton<GameManager>
     int MaxMagicCnt = 28;
 
     [SerializeField]
-    int UpgradeCnt = 0;
-
-    [SerializeField]
     int SummonepgradeCnt = 0;
 
 

@@ -17,6 +17,8 @@ public class Magic : MonoBehaviour
     public float MagicRange;
     public bool isSoloAttck;
 
+    public Color MagicColor;
+
     public MagicType magicType;
     [SerializeField]
     Rigidbody2D rb;
@@ -30,7 +32,8 @@ public class Magic : MonoBehaviour
         MagicSpeed = magic.MagicSpeed;
         MagicRange = magic.MagicRange;
         isSoloAttck = magic.isSoloAttck;
-
+        MagicColor = magic.MagicColor;
+        sr.color = MagicColor;
     }
 
     private void FixedUpdate()

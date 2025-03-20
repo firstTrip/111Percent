@@ -869,8 +869,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5cb4579e98a2202489118527bb132616, type: 2}
   - {fileID: 11400000, guid: b1cd60ff7ef743640858dcdea86d8c35, type: 2}
   SOPetData: []
+  SOMineData:
+  - {fileID: 11400000, guid: f2102920d4e8e0941b4d81c526d420c1, type: 2}
+  - {fileID: 11400000, guid: 9b1c0d8f8f6d7f04ea505857c5cf7cc7, type: 2}
+  - {fileID: 11400000, guid: 824ecf2def4df8b46ac8507b4ec452d1, type: 2}
   TXT_Cost: {fileID: 2363359076048056918}
   TXT_NowUpgrade: {fileID: 2155415512746063992}
+  TXT_MineCost: {fileID: 3141687738187152769}
 --- !u!114 &3731950074510066368
 MonoBehaviour:
   m_ObjectHideFlags: 0

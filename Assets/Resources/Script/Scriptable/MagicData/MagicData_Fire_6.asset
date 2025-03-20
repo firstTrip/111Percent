@@ -16,6 +16,7 @@ MonoBehaviour:
   MagicName: magic
   MagicDamage: 10000
   MagicImage: {fileID: 21300000, guid: 784ec009898a347da85c11fe8c261b09, type: 3}
+  MagicColor: {r: 1, g: 0, b: 0, a: 1}
   MagicCoolTime: 10
   MagicSpeed: 5
   MagicRange: 8

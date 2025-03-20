@@ -42,6 +42,13 @@ public class TabManager : MonoBehaviour
     [SerializeField]
     Vector3 upPanelTran;
 
+    [SerializeField]
+    Text TXT_Timer;
+
+    [SerializeField]
+    float timer = 60f;
+
+
     private void Awake()
     {
         BTN_Prize.onClick.AddListener(PrizeEvent);
@@ -71,8 +78,6 @@ public class TabManager : MonoBehaviour
         obj.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
         obj.GetComponent<Indicator>().SetDesc("미개발 시스템입니다.", 1.5f);
         return;
-        Debug.Log("PetEvent");
-        BTN_Pet.GetComponent<TabUnit>().ActivePanel(MoveMagicPanel, RevertMagicPanel);
     }
 
     void SummonsEvent()
@@ -172,5 +177,28 @@ public class TabManager : MonoBehaviour
         }
 
         return false;
+    }
+
+    public float GetTimer()
+    {
+        return timer;
+    }
+
+
+    public void StartTimer()
+    {
+        StartCoroutine(CO_Timer());
+    }
+
+    IEnumerator CO_Timer()
+    {
+        while(timer>0)
+        {
+            timer -= Time.deltaTime;
+            TXT_Timer.text = timer.ToString("00");
+            yield return null;
+        }
+        timer = 60f;
+
     }
 }
