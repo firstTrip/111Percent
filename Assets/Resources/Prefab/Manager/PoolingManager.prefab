@@ -45,9 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objPrefabs:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 5037747253534101048, guid: 230d885bce009be42b071c08e40bfbe3, type: 3}
+  - {fileID: 1594292762042965312, guid: e79adc74b8ceda741acb73505f4badec, type: 3}
+  - {fileID: 9198903026763279347, guid: 9ced002a1dbc9c642ab58e4bf51cd98b, type: 3}
+  - {fileID: 7841383262447374002, guid: 4590a9b7169fcd34eb18f3e1e56f1b5c, type: 3}
+  - {fileID: 6719771360071424410, guid: 14466cacefffcaa4c8c634584f0d4023, type: 3}
+  - {fileID: 2067482816388308560, guid: 0804552b7f9b2594abb810a7b4e8a05e, type: 3}

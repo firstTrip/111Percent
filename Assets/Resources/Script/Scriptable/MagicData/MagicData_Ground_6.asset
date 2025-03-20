@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 633dc43c1e02e0444a4254fa4e070a95, type: 3}
   m_Name: MagicData_Ground_6
   m_EditorClassIdentifier: 
+  MagicName: magic
   MagicDamage: 10000
   MagicImage: {fileID: 21300000, guid: 83117c70c1d23436eb6177fa097d8220, type: 3}
   MagicCoolTime: 10

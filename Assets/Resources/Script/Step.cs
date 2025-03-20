@@ -64,6 +64,8 @@ public class Step : MonoBehaviour
                 timer = magicData.MagicCoolTime;
                 IMG_CoolTime.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 0);
                 // 공격신호
+
+                GameManager.Instance.player.Attack(magicData);
             }
         }
         else

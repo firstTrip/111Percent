@@ -66,6 +66,8 @@ public class GameManager : Singleton<GameManager>
 
     [Space]
     [Header("ETC Data")]
+    [SerializeField]
+    public Player player;
 
     [SerializeField]
     int SummonsCnt = 20;

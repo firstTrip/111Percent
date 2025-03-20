@@ -24,15 +24,36 @@ public class Monster : MonoBehaviour
         rb.velocity = Vector2.up * MonsterSpeed;
     }
 
+    private void Update()
+    {
+        if(MonsterHP<0)
+        {
+            PoolingManager.ReturnObj(MonsterName, this.gameObject);
+        }
+    }
+
     public void SetMonsterData(SOMonster monsterdata)
     {
         Debug.Log("몬스터 생성");
 
-        MonsterName = monsterdata.name;
+        MonsterName = monsterdata.MonsterName;
         MonsterSpeed = monsterdata.MonsterSpeed;
         MonsterAttack = monsterdata.MonsterAttack;
         MonsterHP = monsterdata.MonsterHP;
     }
 
+    public void GetDamage(float dmg)
+    {
+        MonsterHP -= dmg;
+    }
 
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Bar"))
+        {
+            Debug.Log("Bar Get DMG");
+
+        }
+    }
 }
