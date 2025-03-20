@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,10 +24,44 @@ public class GameManager : Singleton<GameManager>
     [SerializeField]
     SOMonster nowMonster;
 
+
+    [Space]
+    [Header("Upgrade Data")]
+    [SerializeField]
+    SOSummons[] SummonsDatas;
+
+    public GradeType[] summonsGrade = { GradeType.NOMAL, GradeType.SPECIAL, GradeType.RARE, GradeType.UNIQUE, GradeType.LEGEND };
+
     [Space]
     [Header("Spawn")]
     [SerializeField]
     Spawn[] spawns;
+
+    public enum MagicType
+    { 
+        NONE,
+        GROUND,
+        FIRE,
+        WATER
+    
+    }
+
+    public enum GradeType
+    {
+        NONE,
+        NOMAL,
+        SPECIAL,
+        RARE,
+        UNIQUE,
+        LEGEND
+
+    }
+
+
+    [Space]
+    [Header("Magic Data")]
+    [SerializeField]
+    Dictionary<MagicType, Dictionary<GradeType, int>> dictMagic = new Dictionary<MagicType, Dictionary<GradeType, int>>();
 
 
     [Space]
@@ -44,31 +79,52 @@ public class GameManager : Singleton<GameManager>
     [SerializeField]
     int CoinCnt = 0;
 
+    [SerializeField]
+    int SpritCnt = 0;
 
+    [SerializeField]
+    int MaxMagicCnt = 28;
+
+    [SerializeField]
+    int UpgradeCnt = 0;
+
+    [SerializeField]
+    int SummonepgradeCnt = 0;
 
     private void Awake()
     {
         PoolingManager.Instance.Initailize(10);
 
         StartCoroutine(CO_Timer());
+
+
+        dictMagic.Add(MagicType.GROUND, new Dictionary<GradeType, int>());
+        dictMagic.Add(MagicType.FIRE, new Dictionary<GradeType, int>());
+        dictMagic.Add(MagicType.WATER, new Dictionary<GradeType, int>());
     }
 
     IEnumerator CO_Timer()
     {
         yield return new WaitForSeconds(1f);
 
+        Text timerText = UIManager.Instance.GetMagicPanel().GetTimer();
 
         while ((WaveLevel-1) < stageDatas.Length)
         {
             nowStage = stageDatas[WaveLevel - 1];
             nowMonster = MonsterDatas[WaveLevel - 1];
-
+            timerText.color = Color.white;
             float _time = nowStage.time;
             StartCoroutine(CO_MonsterSpawn());
             while(_time>0)
             {
-                UIManager.Instance.GetMagicPanel().GetTimer().text = string.Format("{0:D2}:{1:D2}", (_time / 60).ToString("00"), _time.ToString("00"));
+                timerText.text = string.Format("{0:D2}:{1:D2}", (_time / 60).ToString("00"), _time.ToString("00"));
                 _time -= Time.deltaTime;
+
+                if(_time<3f)
+                {
+                    timerText.color = Color.red;
+                }
 
                 yield return null;
             }
@@ -109,6 +165,27 @@ public class GameManager : Singleton<GameManager>
         return CoinCnt;
     }
 
+    public int GetSprit()
+    {
+        return SpritCnt;
+    }
+
+    public int GetMagicCnt()
+    {
+        int cnt = 0;
+
+        foreach(var data in dictMagic)
+        {
+            foreach(var item in data.Value)
+            {
+                cnt += item.Value;
+            }
+        }
+
+
+        return cnt;
+    }
+
     public int GetSummons()
     {
         return SummonsCnt;
@@ -142,5 +219,40 @@ public class GameManager : Singleton<GameManager>
             Time.timeScale = GameSpeed;
 
         }
+    }
+
+    public void AddMagic(MagicType type, GradeType grade)
+    {
+        if(dictMagic[type].ContainsKey(grade))
+        {
+            dictMagic[type][grade] += 1;
+        }
+        else
+        {
+            dictMagic[type].Add(grade, 1);
+        }
+    }
+
+    public void RemoveMagic(MagicType type, GradeType grade)
+    {
+        if (dictMagic[type].ContainsKey(grade))
+        {
+            dictMagic[type][grade] -= 3;
+        }
+    }
+
+
+    public Dictionary<MagicType, Dictionary<GradeType, int>> GetMagicDict()
+    {
+        return dictMagic;
+    }
+    public int GetMaxMagicCnt()
+    {
+        return MaxMagicCnt;
+    }
+
+    public SOSummons GetSummonsData()
+    {
+        return SummonsDatas[SummonepgradeCnt];
     }
 }

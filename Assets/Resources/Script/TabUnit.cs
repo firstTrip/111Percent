@@ -17,6 +17,18 @@ public class TabUnit : MonoBehaviour
     Text TXT_Cnt;
 
 
+    [SerializeField]
+    public enum ECellType
+    {
+        NONE,
+        PRIZE,
+        PET,
+        UPGRADE,
+        MINE
+
+    }
+
+    public ECellType eCellType;
     public void ActivePanel(Action action1 ,Action action2)
     {
         if (!IMG_TabPanel.IsActive())

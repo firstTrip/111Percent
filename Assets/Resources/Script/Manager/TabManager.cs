@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static GameManager;
 
 public class TabManager : MonoBehaviour
 {
@@ -86,10 +87,37 @@ public class TabManager : MonoBehaviour
         }
         else
         {
+
+            if(GameManager.Instance.GetMagicCnt() >= GameManager.Instance.GetMaxMagicCnt())
+            {
+                var obj = PoolingManager.GetObj("Indicator");
+                obj.transform.SetParent(uiCanvas.transform);
+                obj.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+                obj.GetComponent<Indicator>().SetDesc("주술 최대치 입니다.", 1.5f);
+                return;
+            }
             // 소환 로직 
             GameManager.Instance.SetCoin(GameManager.Instance.GetSummons() * (-1));
             GameManager.Instance.IncreaseSummonsCnt();
+            var picker = new MagicRandomMangager<GradeType>();
+            var TypePicker = new MagicRandomMangager<MagicType>();
+
+            SOSummons data = GameManager.Instance.GetSummonsData();
+            GradeType[] grade = GameManager.Instance.summonsGrade;
+            for (int i =0;i< grade.Length;++i)
+            {
+                picker.AddEntry(grade[i], data.SummonsWeghitRate[i]);
+            }
+
+            TypePicker.AddEntry(MagicType.GROUND, 33);
+            TypePicker.AddEntry(MagicType.FIRE, 33);
+            TypePicker.AddEntry(MagicType.WATER, 33);
+
+            GameManager.Instance.AddMagic(TypePicker.PickRandom(), picker.PickRandom());
+
+            UIManager.Instance.GetMagicPanel().SetMagic();
             UIManager.Instance.GetMagicPanel().SetCoinText();
+            UIManager.Instance.GetMagicPanel().SetMagicCntText();
             BTN_Summons.GetComponent<TabUnit>().SetCnt(GameManager.Instance.GetSummons());
         }
     }
