@@ -1418,6 +1418,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1224439334}
     m_Modifications:
+    - target: {fileID: 390656222370024423, guid: e8f2dfdaf23209a45900df8fdc7233d0, type: 3}
+      propertyPath: HP
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 5656841311558718350, guid: e8f2dfdaf23209a45900df8fdc7233d0, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1501,6 +1505,10 @@ PrefabInstance:
     - target: {fileID: 8641727562454820037, guid: e8f2dfdaf23209a45900df8fdc7233d0, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8641727562454820037, guid: e8f2dfdaf23209a45900df8fdc7233d0, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

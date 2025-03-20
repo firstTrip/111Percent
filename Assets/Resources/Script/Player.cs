@@ -8,12 +8,25 @@ public class Player : MonoBehaviour
     RectTransform attackPos;
 
     [SerializeField]
-    float HP;
+    float HP =200f;
+
+    private void Update()
+    {
+        if(HP<0)
+        {
+            //game end
+        }
+    }
 
     public void Attack(SOMagic magic)
     {
         var obj = PoolingManager.GetObj("Magic");
         obj.GetComponent<Magic>().Init(magic);
         obj.transform.position = attackPos.position;
+    }
+
+    public void GetDamage(float _dmg)
+    {
+        HP -= _dmg;
     }
 }

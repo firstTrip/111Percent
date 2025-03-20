@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Monster : MonoBehaviour
 {
@@ -19,9 +20,23 @@ public class Monster : MonoBehaviour
     [SerializeField]
     Rigidbody2D rb;
 
+
+    float coolTime = 2f;
     private void FixedUpdate()
     {
         rb.velocity = Vector2.up * MonsterSpeed;
+
+        RaycastHit2D hit = Physics2D.Raycast(this.gameObject.transform.position, Vector2.up, 1f,LayerMask.GetMask("Player"));
+
+        if(hit)
+        {
+            coolTime -= Time.deltaTime;
+            if (coolTime <=0)
+            {
+                hit.collider.gameObject.GetComponent<Player>().GetDamage(MonsterAttack);
+                coolTime = 2f;
+            }
+        }
     }
 
     private void Update()
@@ -47,13 +62,4 @@ public class Monster : MonoBehaviour
         MonsterHP -= dmg;
     }
 
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Bar"))
-        {
-            Debug.Log("Bar Get DMG");
-
-        }
-    }
 }
