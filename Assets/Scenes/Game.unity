@@ -2105,6 +2105,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5512558971690909187, guid: bea27d40381c31b489c879ca86e58437, type: 3}
+      propertyPath: spawns.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5512558971690909187, guid: bea27d40381c31b489c879ca86e58437, type: 3}
       propertyPath: spawns.Array.data[0]
       value: 
       objectReference: {fileID: 439429013}
