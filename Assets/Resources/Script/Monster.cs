@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static SOPrize;
 
 public class Monster : MonoBehaviour
 {
@@ -26,6 +28,12 @@ public class Monster : MonoBehaviour
     GameObject hpBar;
 
 
+    [SerializeField]
+    Sprite orginSprite;
+
+
+    public EprizeType PrizeType;
+    public int PrizeCnt;
     float coolTime = 2f;
     private void FixedUpdate()
     {
@@ -48,7 +56,15 @@ public class Monster : MonoBehaviour
     {
         if(MonsterHP<0)
         {
-            GameManager.Instance.SetCoin(3);
+
+            if(PrizeType == EprizeType.COIN)
+            {
+                GameManager.Instance.SetCoin(PrizeCnt);
+            }
+            else if(PrizeType == EprizeType.SPRIT)
+            {
+                GameManager.Instance.SetSprit(PrizeCnt);
+            }
             PoolingManager.ReturnObj(MonsterName, this.gameObject);
         }
     }
@@ -56,11 +72,26 @@ public class Monster : MonoBehaviour
     public void SetMonsterData(SOMonster monsterdata)
     {
         Debug.Log("阁胶磐 积己");
-
+        PrizeType = monsterdata.PrizeType;
+        PrizeCnt = monsterdata.PrizeCnt;
         MonsterName = monsterdata.MonsterName;
         MonsterSpeed = monsterdata.MonsterSpeed;
         MonsterAttack = monsterdata.MonsterAttack;
         MonsterHP = monsterdata.MonsterHP;
+        OriginMonsterHP = MonsterHP;
+        hpBar.transform.localScale = new Vector3(0.92f, hpBar.transform.localScale.y, 0);
+    }
+
+    public void SetPrizeData(SOPrize monsterdata)
+    {
+        Debug.Log("泅惑 各 积己");
+
+        PrizeType = monsterdata.PrizeType;
+        PrizeCnt = monsterdata.PrizeCnt;
+        MonsterName = monsterdata.PrizeName;
+        MonsterSpeed = monsterdata.PrizeSpeed;
+        MonsterAttack = monsterdata.PrizeAttack;
+        MonsterHP = monsterdata.PrizeHP;
         OriginMonsterHP = MonsterHP;
         hpBar.transform.localScale = new Vector3(0.92f, hpBar.transform.localScale.y, 0);
     }

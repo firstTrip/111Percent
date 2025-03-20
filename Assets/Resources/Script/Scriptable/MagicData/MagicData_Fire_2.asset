@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 633dc43c1e02e0444a4254fa4e070a95, type: 3}
   m_Name: MagicData_Fire_2
   m_EditorClassIdentifier: 
+  magicType: 2
   MagicName: magic
   MagicDamage: 500
   MagicImage: {fileID: 21300000, guid: 784ec009898a347da85c11fe8c261b09, type: 3}

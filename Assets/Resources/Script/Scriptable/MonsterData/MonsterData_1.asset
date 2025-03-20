@@ -16,3 +16,5 @@ MonoBehaviour:
   MonsterSpeed: 1
   MonsterAttack: 1
   MonsterHP: 100
+  PrizeType: 1
+  PrizeCnt: 3

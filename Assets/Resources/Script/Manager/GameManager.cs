@@ -93,6 +93,16 @@ public class GameManager : Singleton<GameManager>
     [SerializeField]
     int SummonepgradeCnt = 0;
 
+
+    [SerializeField]
+    public int GroundGrade = 0;
+
+    [SerializeField]
+    public int FireGrade = 0;
+
+    [SerializeField]
+    public int WaterGrade = 0;
+
     private void Awake()
     {
         PoolingManager.Instance.Initailize(10);
@@ -157,10 +167,21 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    public Spawn GetPlayerSpawn()
+    {
+       return spawns[0];
+    }
+
     public void SetCoin(int _cnt)
     {
         CoinCnt += _cnt;
         UIManager.Instance.GetMagicPanel().SetCoinText();
+    }
+
+    public void SetSprit(int _cnt)
+    {
+        SpritCnt += _cnt;
+        UIManager.Instance.GetMagicPanel().SetSpritText();
     }
 
     public int GetCoin()
@@ -252,6 +273,47 @@ public class GameManager : Singleton<GameManager>
     public int GetMaxMagicCnt()
     {
         return MaxMagicCnt;
+    }
+
+    public void SummonsUpgrade()
+    {
+        SummonepgradeCnt += 1;
+    }
+
+    public int GetSummonsUpgrade()
+    {
+        return SummonepgradeCnt + 1;
+    }
+
+    public void GroundUpgrade()
+    {
+        GroundGrade += 1;
+    }
+
+    public void FireUpgrade()
+    {
+        FireGrade += 1;
+    }
+
+    public void WaterUpgrade()
+    {
+        WaterGrade += 1;
+    }
+
+    public int GetMagicUpgrade(MagicType magicType)
+    {
+        switch (magicType)
+        { 
+            case MagicType.GROUND:
+                return GroundGrade;
+
+            case MagicType.FIRE:
+                return FireGrade;
+
+            case MagicType.WATER:
+                return WaterGrade;
+        }
+        return 0;
     }
 
     public SOSummons GetSummonsData()

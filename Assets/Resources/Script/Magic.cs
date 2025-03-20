@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using static GameManager;
 
 public class Magic : MonoBehaviour
 {
@@ -16,11 +17,14 @@ public class Magic : MonoBehaviour
     public float MagicRange;
     public bool isSoloAttck;
 
+    public MagicType magicType;
     [SerializeField]
     Rigidbody2D rb;
     public void Init(SOMagic magic)
     {
-        MagicDamage = magic.MagicDamage;
+
+        magicType = magic.magicType;
+        MagicDamage = magic.MagicDamage + (magic.MagicDamage * GameManager.Instance.GetMagicUpgrade(magicType));
         sr.sprite = magic.MagicImage;
         MagicCoolTime = magic.MagicCoolTime;
         MagicSpeed = magic.MagicSpeed;

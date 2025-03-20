@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05dc323f84b1dc247aac4b4c3276f81d, type: 3}
   m_Name: PrizeData_1
   m_EditorClassIdentifier: 
+  PrizeName: Prize_1
   PrizeHP: 10000
   PrizeType: 1
   PrizeCnt: 200
+  PrizeSpeed: 5
+  PrizeAttack: 10

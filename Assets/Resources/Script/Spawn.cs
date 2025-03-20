@@ -10,4 +10,11 @@ public class Spawn : MonoBehaviour
         obj.GetComponent<Monster>().SetMonsterData(monsterdata);
         obj.transform.position = transform.position;
     }
+
+    public void CreatePrize(SOPrize prizeData)
+    {
+        var obj = PoolingManager.GetObj(prizeData.PrizeName);
+        obj.GetComponent<Monster>().SetPrizeData(prizeData);
+        obj.transform.position = transform.position;
+    }
 }

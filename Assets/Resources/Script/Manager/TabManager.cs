@@ -65,6 +65,12 @@ public class TabManager : MonoBehaviour
 
     void PetEvent()
     {
+
+        var obj = PoolingManager.GetObj("Indicator");
+        obj.transform.SetParent(uiCanvas.transform);
+        obj.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+        obj.GetComponent<Indicator>().SetDesc("미개발 시스템입니다.", 1.5f);
+        return;
         Debug.Log("PetEvent");
         BTN_Pet.GetComponent<TabUnit>().ActivePanel(MoveMagicPanel, RevertMagicPanel);
     }

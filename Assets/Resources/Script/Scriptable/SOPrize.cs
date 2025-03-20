@@ -13,8 +13,11 @@ public class SOPrize : ScriptableObject
     
     }
 
+    public string PrizeName;
     public int PrizeHP;
     public EprizeType PrizeType;
     public int PrizeCnt;
+    public float PrizeSpeed;
+    public float PrizeAttack;
 
 }
